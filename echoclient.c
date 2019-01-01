@@ -11,7 +11,7 @@ int main(int argc, char **argv)
     rio_t rio;
     str host = "https://api.themoviedb.org";
 //3/discover/movie?api_key=5896d89b88e4261a1d2413a2846e7728&language=en-US&with_genres=18&with_cast=23659&sort_by=vote_average.desc";
-    str port = 3;
+    str port = 12345;
     str request ="discover/movie?api_key=5896d89b88e4261a1d2413a2846e7728&language=en-US&with_genres=18&with_cast=23659&sort_by=vote_average.desc";                                                                                 
       
     if (argc != 3) {
