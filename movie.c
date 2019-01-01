@@ -60,10 +60,13 @@ int main()
 
   /* gets the user input */
   scanf("%s", actorName);
-
+  scanf("%s", genre);
+  printf("The actor that you are in the mood for is:", actorName, "The genre you are in the mood for is:", genre);
+   
   /* gets the genre */
-  getGenre(genre, genreid); 
-
+  getGenre(genre, genreid);
+  
+  
   /* use search API request to get json that has actor id
 
 
