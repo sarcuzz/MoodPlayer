@@ -68,7 +68,27 @@ int main()
         genre =  (char *) arg2;
     }
 
-  
+  /* gets the genre */
+  getGenre(genre, genreid);
+
+
+  /* use search API request to get json that has actor id                                                                                                      
+https://api.themoviedb.org/3/search/person?api_key=5896d89b88e4261a1d2413a2846e7728&language=en\
+-US&query=firstName%20lastName&page=1&include_adult=false                                       
+/*make a local copy of the string that we can manipulate*/
+  char *const copy = strdup(actorname);
+  char *space = copy;
+  /*find the next space in the string, and replace it with a %20*/
+  while (space = strchr(space, ' ')) *space = "%%20";
+  char name = copy;
+  char url[200];
+  strcpy(url,"https://api.themoviedb.org/3/search/person?api_key=5896d89b88e4261a1d2413a2846e77\
+28&language=en-US&query=");
+  strcat(url, name);
+  strcat(url, "&page=1&include_adult=false");
+  strcat(url, '\0');
+
+    
     sprintf(content, "Welcome to our Movie Application! Please choose a genre and tell us who you'd like to see in a film!");
 
   /* gets the user input */
@@ -77,26 +97,6 @@ int main()
     sprintf(content, "%s The actor that you are in the mood for is: %s ",content, actorname);
     sprintf(content, "%s The genre you are in the mood for is: %s", content,genre);
    
-  /* gets the genre */
-  getGenre(genre, genreid);
-  
-
-  /* use search API request to get json that has actor id
-
-
-https://api.themoviedb.org/3/search/person?api_key=5896d89b88e4261a1d2413a2846e7728&language=en-US&query=firstName%20lastName&page=1&include_adult=false
-/*make a local copy of the string that we can manipulate*/
-  char *const copy = strdup(actorname);
-  char *space = copy;
-  /*find the next space in the string, and replace it with a %20*/
-  while (space = strchr(space, ' ')) *space = "%%20";
-  char name = copy;
-  char url[100];
-  strcpy(url,"https://api.themoviedb.org/3/search/person?api_key=5896d89b88e4261a1d2413a2846e7728&language=en-US&query=");
-  strcat(url, name);
-  strcat(url, "&page=1&include_adult=false");
-  strcat(url, '\0');
-
   printf("Connection: close\r\n");
   printf("Content-length: %d\r\n", (int)strlen(content));
   printf("Content-type: text/html\r\n\r\n");
