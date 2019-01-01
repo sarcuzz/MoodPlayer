@@ -80,7 +80,7 @@ int main()
   /* gets the genre */
   getGenre(genre, genreid);
   
-  exit(0);
+
   /* use search API request to get json that has actor id
 
 
@@ -96,6 +96,12 @@ https://api.themoviedb.org/3/search/person?api_key=5896d89b88e4261a1d2413a2846e7
   strcat(url, name);
   strcat(url, "&page=1&include_adult=false");
   strcat(url, '\0');
+
+  printf("Connection: close\r\n");
+  printf("Content-length: %d\r\n", (int)strlen(content));
+  printf("Content-type: text/html\r\n\r\n");
+  printf("%s", content);
+  fflush(stdout);
   /*
 	Replace spaces with %20
 	Plug name into search request
@@ -108,5 +114,6 @@ concatinate actor id and genreid into new API request
 https://api.themoviedb.org/3/discover/movie?api_key=5896d89b88e4261a1d2413a2846e7728&language=en-US&with_genres=GENREID&with_cast=ACTORID&sort_by=vote_average.desc
   */
 
+  exit(0);
 
 }
