@@ -5,9 +5,9 @@
 #include <string.h>
 #include <curl/curl.h>
 
-char userInput(char str)
+char userInput(char actorName)
 {
-  char actorName
+  char actorName;
   printf("Welcome to our Movie Application! Which actor would you like to watch?");
   scanf("%s", actorName);
     
@@ -65,6 +65,6 @@ int main()
   char actorname;
 
   getGenre(genre, genreid);
-  getActor(
+  
  
 }
