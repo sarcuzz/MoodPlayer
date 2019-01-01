@@ -5,14 +5,6 @@
 #include <string.h>
 #include <curl/curl.h>
 
-char userInput(char str)
-{
-  char actorName
-  printf("Welcome to our Movie Application! Which actor would you like to watch?");
-  scanf("%s", actorName);
-    
-
-
 void getGenre(char genre, int genreid)
 {
   if(genre == "action"){
@@ -64,7 +56,29 @@ int main()
   char genre;
   char actorname;
 
-  getGenre(genre, genreid);
-  getActor(
- 
+  printf("Welcome to our Movie Application! Please choose a genre and tell us who you'd like to see in a film!");
+
+  /* gets the user input */
+  scanf("%s", actorName);
+
+  /* gets the genre */
+  getGenre(genre, genreid); 
+
+  /* use search API request to get json that has actor id
+
+
+https://api.themoviedb.org/3/search/person?api_key=5896d89b88e4261a1d2413a2846e7728&language=en-US&query=firstName%20lastName&page=1&include_adult=false
+
+	Replace spaces with %20
+	Plug name into search request
+	If valid request:
+		-invalid if “total_results”: 0,
+		find the first ID using regex
+
+concatinate actor id and genreid into new API request 
+
+https://api.themoviedb.org/3/discover/movie?api_key=5896d89b88e4261a1d2413a2846e7728&language=en-US&with_genres=GENREID&with_cast=ACTORID&sort_by=vote_average.desc
+
+
+
 }
