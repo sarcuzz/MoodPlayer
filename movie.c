@@ -56,17 +56,31 @@ int main()
   char genre;
   char actorname;
 
-  printf("Welcome to our Movie Application! Please choose a genre and tell us who you'd like to see in a film!");
+  char *buf, *p;
+  char arg1[MAXLINE], arg2[MAXLINE], content[MAXLINE];
+  
+    /* Extract the two arguments */
+    if ((buf = getenv("QUERY_STRING")) != NULL) {
+        p = strchr(buf, '&');
+        *p = '\0';
+        strcpy(arg1, buf);
+        strcpy(arg2, p+1);
+        actorname = atoi(arg1);
+        genre = atoi(arg2);
+    }
+
+  
+  sprintf("Welcome to our Movie Application! Please choose a genre and tell us who you'd like to see in a film!");
 
   /* gets the user input */
-  scanf("%s", actorName);
-  scanf("%s", genre);
+  /*scanf("%s", actorName);
+    scanf("%s", genre);*/
   printf("The actor that you are in the mood for is:", actorName, "The genre you are in the mood for is:", genre);
    
   /* gets the genre */
   getGenre(genre, genreid);
   
-  
+  exit(0)
   /* use search API request to get json that has actor id
 
 
