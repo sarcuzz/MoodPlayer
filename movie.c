@@ -74,8 +74,8 @@ int main()
   /* gets the user input */
   /*scanf("%s", actorName);
     scanf("%s", genre);*/
-    sprintf(content, "The actor that you are in the mood for is: %s ",content, actorname);
-    sprintf(content, "The genre you are in the mood for is: %s", content,genre);
+    sprintf(content, "%s The actor that you are in the mood for is: %s ",content, actorname);
+    sprintf(content, "%s The genre you are in the mood for is: %s", content,genre);
    
   /* gets the genre */
   getGenre(genre, genreid);
@@ -89,11 +89,13 @@ https://api.themoviedb.org/3/search/person?api_key=5896d89b88e4261a1d2413a2846e7
   char *const copy = strdup(actorname);
   char *space = copy;
   /*find the next space in the string, and replace it with a %20*/
-  while (space = strchr(space, " ")) *space = "%20";
+  while (space = strchr(space, ' ')) *space = "%%20";
   char name = copy;
-  char url = "https://api.themoviedb.org/3/search/person?api_key=5896d89b88e4261a1d2413a2846e7728&language=en-US&query\
-=" + name + "&page=1&include_adult=false";
-  
+  char url[100];
+  strcpy(url,"https://api.themoviedb.org/3/search/person?api_key=5896d89b88e4261a1d2413a2846e7728&language=en-US&query=");
+  strcat(url, name);
+  strcat(url, "&page=1&include_adult=false");
+  strcat(url, '\0');
   /*
 	Replace spaces with %20
 	Plug name into search request
@@ -104,7 +106,7 @@ https://api.themoviedb.org/3/search/person?api_key=5896d89b88e4261a1d2413a2846e7
 concatinate actor id and genreid into new API request 
 
 https://api.themoviedb.org/3/discover/movie?api_key=5896d89b88e4261a1d2413a2846e7728&language=en-US&with_genres=GENREID&with_cast=ACTORID&sort_by=vote_average.desc
-
+  */
 
 
 }
