@@ -25,7 +25,7 @@ $(PROGS): $(CSAPP_SRC)/csapp.o
 $(CSAPP_SRC)/csapp.o: $(CSAPP_SRC)/csapp.c $(CSAPP_INC)/csapp.h
 
 #tiny/tiny: tiny/tiny.c
-	#(cd tiny; make)	
+#(cd tiny; make)	
 
 movie: movie.c $(CSAPP_SRC)/csapp.c
        $(CC) $(CFLAGS) -o movie movie.c $(CSAPP_SRC)/csapp.c 
