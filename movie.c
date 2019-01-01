@@ -71,7 +71,16 @@ int main()
 
 
 https://api.themoviedb.org/3/search/person?api_key=5896d89b88e4261a1d2413a2846e7728&language=en-US&query=firstName%20lastName&page=1&include_adult=false
-
+/*make a local copy of the string that we can manipulate*/
+  char *const copy = strdup(actorName);
+  char *space = copy;
+  /*find the next space in the string, and replace it with a %20*/
+  while (space = strchr(space, '')) *space = %20;
+  str name = copy;
+  url = "https://api.themoviedb.org/3/search/person?api_key=5896d89b88e4261a1d2413a2846e7728&language=en-US&query\
+=" + name + "&page=1&include_adult=false";
+  
+  /*
 	Replace spaces with %20
 	Plug name into search request
 	If valid request:
