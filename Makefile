@@ -28,7 +28,7 @@ $(CSAPP_SRC)/csapp.o: $(CSAPP_SRC)/csapp.c $(CSAPP_INC)/csapp.h
 #(cd tiny; make)	
 
 movie: movie.c $(CSAPP_SRC)/csapp.c
-       $(CC) $(CFLAGS) -o movie movie.c $(CSAPP_SRC)/csapp.c 
+	$(CC) $(CFLAGS) -o movie movie.c $(CSAPP_SRC)/csapp.c 
 # Programs that need more than one .o file
 echoserveri: echoserveri.o echo.o
 
