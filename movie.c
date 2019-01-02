@@ -89,7 +89,7 @@ https://api.themoviedb.org/3/search/person?api_key=5896d89b88e4261a1d2413a2846e7
   strcat(url, '\0');
 
     
-    sprintf(content, "Welcome to our Movie Application! Please choose a genre and tell us who you'd like to see in a film!");
+  sprintf(content, "Welcome to our Movie Application! Please choose a genre and tell us who you'd like to see in a film!");
 
   /* gets the user input */
   /*scanf("%s", actorName);
