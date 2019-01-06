@@ -1,11 +1,12 @@
+
 #include "csapp.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-void getGenre(const char* genre, int genreid)
+int *getGenre(const char* genre,int* genreid)
 {
-  if(genre == "action"){
+  if(genre == "genre=action"){
     genreid = 28;
       }else if(genre == "adventure"){
     genreid = 12;
@@ -44,16 +45,18 @@ void getGenre(const char* genre, int genreid)
       }else if(genre == "western"){
     genreid = 37;
       }
+  return genreid;
 }
 
 int main()
 {
 
-  int actorid;
-  int genreid;
+  int *actorid;
+  int genreid=1;
   const char *  genre;
   const char *  actorname;
-
+ 
+  
   char *buf, *p;
   char arg1[MAXLINE], arg2[MAXLINE], content[MAXLINE];
   
@@ -68,33 +71,32 @@ int main()
     }
 
   /* gets the genre */
-  getGenre(genre, genreid);
-
-
+    genreid = getGenre(genre, genreid);
+   
   /* use search API request to get json that has actor id                                                                                                      
 https://api.themoviedb.org/3/search/person?api_key=5896d89b88e4261a1d2413a2846e7728&language=en\
 -US&query=firstName%20lastName&page=1&include_adult=false                                       
-/*make a local copy of the string that we can manipulate*/
+/*make a local copy of the string that we can manipulate */
   char *const copy = strdup(actorname);
   char *space = copy;
-  /*find the next space in the string, and replace it with a %20*/
-  while (space = strchr(space, ' ')) *space = "%%20";
-  char name = copy;
+  /*find the next space in the string, and replace it with a %20 */
+  while (space = strchr(space, '+')){ *space = "%%20";}
+  actorname  = copy;
   char url[200];
-  strcpy(url,"https://api.themoviedb.org/3/search/person?api_key=5896d89b88e4261a1d2413a2846e77\
+  /*  strcpy(url,"https://api.themoviedb.org/3/search/person?api_key=5896d89b88e4261a1d2413a2846e77 \
 28&language=en-US&query=");
-  strcat(url, name);
+  strcat(url, actorname);
   strcat(url, "&page=1&include_adult=false");
   strcat(url, '\0');
 
-    
+  */
   sprintf(content, "Welcome to our Movie Application! Please choose a genre and tell us who you'd like to see in a film!");
 
   /* gets the user input */
   /*scanf("%s", actorName);
     scanf("%s", genre);*/
-    sprintf(content, "%s The actor that you are in the mood for is: %s ",content, actorname);
-    sprintf(content, "%s The genre you are in the mood for is: %s", content,genre);
+  sprintf(content, "%s The actor that you are in the mood for is: %s ",content, actorname);
+  sprintf(content, "%s The genre you are in the mood for is: %d", content,genre);
    
   printf("Connection: close\r\n");
   printf("Content-length: %d\r\n", (int)strlen(content));
