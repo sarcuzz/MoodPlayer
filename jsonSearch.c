@@ -2,8 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-/*input the api json code*/
+#include "jsmn.c"
 
 
 #define JSON_FILE_PATH "jsonSearch.json"
@@ -15,14 +14,13 @@ void readfile(char* filepath, char* fileContent)
     FILE *f;
     char c;
     int index;
-    f = fopen("jsonSearch.json", "rt");
+    f = fopen(filepath, "rt");
     while((c = fgetc(f)) != EOF){
         fileContent[index] = c;
         index++;
     }
     fileContent[index] = '\0';
 }
-
 // This is where the magic happens
 int parseJSON(char *filepath, void callback(char *, char*)){
 
@@ -31,12 +29,13 @@ int parseJSON(char *filepath, void callback(char *, char*)){
     char value[1024];
     char key[1024];
 
-    readfile(filepath, JSON_STRING);
+   readfile(filepath, JSON_STRING);
 
    int i;
    int r;
 
    jsmn_parser p;
+   
    jsmntok_t t[MAX_TOKEN_COUNT];
 
    jsmn_init(&p);
@@ -99,34 +98,3 @@ int main()
     parseJSON(JSON_FILE_PATH, mycallback);
     return 0;
 }
-
-/*int main() {
-	int i;
-	int j;
-	jsmn_parser p;
-	
-	jsmntok_t t[index];
-
-	testing to make sure it does not fail
-	
-	j = jsmn_parse(&p, JSON_STRING, strlen(JSON_STRING), t, sizeof(t)/sizeof(t[index]));
-	if (j < 0) {
-		printf("Failed to parse JSON: %d\n", j);
-		return 1;
-	}
-	
-	 Assume that there is something there and if not return that 
-	if (j < 1 || t[0].type != JSMN_OBJECT) {
-		printf("Object expected\n");
-		return 1;
-	}
-	 Loop over the keys to get the object 
-	for (i = 1; i < j; i++) {
-		if (json(JSON_STRING, &t[i], "id") == 0) {
-			printf("The ID is: %.*s\n", t[i+1].end-t[i+1].start,
-					JSON_STRING + t[i+1].start);
-			i++;
-		}
-	}
-}
-*/
