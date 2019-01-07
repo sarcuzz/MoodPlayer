@@ -67,15 +67,26 @@ int main()
       }else if(strcmp(genre,"genre=western")==0){
     genreid = 37;
       }
-
-
-
-        /*make a local copy of the string that we can manipulate */
-        char *const copy = strdup(actorname);
-        char *space = copy;
-        /*find the next space in the string, and replace it with a %20 */
-        while (space = strchr(space, '+')){ *space = "%%20";}
-        actorname  = copy;
+    
+int new_string_length = 0;
+for (char *c = actorname; *c != '\0'; c++) {
+    if (*c == '+') new_string_length += 2;
+    new_string_length++;
+}
+char *actornew = malloc((new_string_length + 1) * sizeof actornew[0]);
+char *c1, *c2;
+for (c1 = actorname, c2 = actornew; *c1 != '\0'; c1++) {
+    if (*c1 == '+') {
+        c2[0] = '%';
+        c2[1] = '2';
+        c2[2] = '0';
+        c2 += 3;
+    }else{
+        *c2 = *c1;
+        c2++;
+    }
+}
+*c2 = '\0';
 
 
 
@@ -95,10 +106,10 @@ https://api.themoviedb.org/3/search/person?api_key=5896d89b88e4261a1d2413a2846e7
   /* gets the user input */
   /*scanf("%s", actorName);
     scanf("%s", genre);*/
-  sprintf(content, "%s The actor that you are in the mood for is: %s ",content, actorname);
+  sprintf(content, "%s The actor that you are in the mood for is: %s ",content, actornew);
   sprintf(content, "%s The genre you are in the mood for is: %d", content,genreid);
 
-  sprintf(content, "%s /n  Actorname: %s, Genre: %s, Genreid: %d", content, actorname, genre, genreid);
+  sprintf(content, "%s /n  Actorname: %s, Genre: %s, Genreid: %d", content, actornew, genre, genreid);
   
   printf("Connection: close\r\n");
   printf("Content-length: %d\r\n", (int)strlen(content));
