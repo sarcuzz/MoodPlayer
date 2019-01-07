@@ -22,14 +22,17 @@ void readfile(char* filepath, char* fileContent)
     fileContent[index] = '\0';
 }
 // This is where the magic happens
+
 int parseJSON(char *filepath, void callback(char *, char*)){
 
-    char JSON_STRING[BUFFER_SIZE];
+  char JSON_STRING[BUFFER_SIZE];
 
+  
     char value[1024];
     char key[1024];
-
-   readfile(filepath, JSON_STRING);
+    
+    
+    readfile(filepath, JSON_STRING);
 
    int i;
    int r;
@@ -53,6 +56,8 @@ int parseJSON(char *filepath, void callback(char *, char*)){
        return 1;
    }
 
+   printf("%d",r);
+   
    
    for (i = 1; i < r; i++){
 
@@ -81,7 +86,7 @@ int parseJSON(char *filepath, void callback(char *, char*)){
        callback(key, value);
 
        i++;
-   }
+       }
 
    return 0;
 }

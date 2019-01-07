@@ -13,6 +13,9 @@ int main()
   char *genre;
   char *buf, *p;
   char arg1[MAXLINE], arg2[MAXLINE], content[MAXLINE];
+  char *host, request[100000], save[1000000],end[1000000], *port;
+  int clientfd;
+  
   
   // Extract the two arguments 
     if ((buf = getenv("QUERY_STRING")) != NULL) {
@@ -88,7 +91,25 @@ for (c1 = actorname, c2 = actornew; *c1 != '\0'; c1++) {
 }
 *c2 = '\0';
 
+ sprintf(request, "GET /3/search/person?api_key=5896d89b88e4261a1d2413a2846e7728&language=en-US&query=%s&page=1&include_adult=false",actornew);
 
+ rio_t rio;
+ host = "https:https://api.themoviedb.org";
+ port = "80";
+
+ clientfd = Open_clientfd(host,port);
+ Rio_readinitb(&rio,clientfd);
+
+ if (clientfd == -1){
+   printf("Failed connection");
+ }
+
+ Rio_readlineb(&rio, save, MAXLINE);
+ sprintf(content,"%s%s\n",content,save);
+  
+	  
+
+ 
 
   /* use search API request to get json that has actor id                                                                                                      
 https://api.themoviedb.org/3/search/person?api_key=5896d89b88e4261a1d2413a2846e7728&language=en\
