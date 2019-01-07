@@ -95,9 +95,10 @@ for (c1 = actorname, c2 = actornew; *c1 != '\0'; c1++) {
  rio_t rio;
  host = "https:https://api.themoviedb.org";
  port = "80";
-
- clientfd =  Open_clientfd(host,port);
- //Rio_readinitb(&rio,clientfd);
+ 
+int Open_clientfd(char *hostname, char *port);
+ clientfd = Open_clientfd(host,port);
+//Rio_readinitb(&rio,clientfd);
  // ssize_t Rio_readlineb(rio_t *rp, void *usrbuf, size_t maxlen);
  void Rio_readinitb(rio_t *rp, int fd);
  if (clientfd == -1){
