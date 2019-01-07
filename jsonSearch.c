@@ -15,7 +15,7 @@ void readfile(char* filepath, char* fileContent)
     FILE *f;
     char c;
     int index;
-    f = fopen("jsonSearch.json", "rt");
+    f = fopen(filepath, "rt");
     while((c = fgetc(f)) != EOF){
         fileContent[index] = c;
         index++;
