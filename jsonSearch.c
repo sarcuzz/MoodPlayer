@@ -7,7 +7,7 @@
 
 #define JSON_FILE_PATH "jsonSearch.json"
 #define BUFFER_SIZE 5000
-#define MAX_TOKEN_COUNT 128
+#define MAX_TOKEN_COUNT 5000
 
 void readfile(char* filepath, char* fileContent)
 {
@@ -42,9 +42,10 @@ int parseJSON(char *filepath, void callback(char *, char*)){
    jsmntok_t t[MAX_TOKEN_COUNT];
 
    jsmn_init(&p);
-
-   r = jsmn_parse(&p, JSON_STRING, strlen(JSON_STRING), t, sizeof(t)/(sizeof(t[0])));
-
+   
+   r = jsmn_parse(&p, JSON_STRING, strlen(JSON_STRING), t, 500);
+   // &p is parser object, JSON STRING is the json, length json, max tokens, how many to try and parse
+   
    if (r < 0) {
        printf("Failed to parse JSON: %d\n", r);
        return 1;
@@ -56,10 +57,10 @@ int parseJSON(char *filepath, void callback(char *, char*)){
        return 1;
    }
 
-   printf("%d",r);
+   //   printf("%d",r);
+
    
-   
-   for (i = 1; i < r; i++){
+   for (i = 12; i < r; i++){
 
        jsmntok_t json_value = t[i+1];
        jsmntok_t json_key = t[i];
@@ -82,9 +83,10 @@ int parseJSON(char *filepath, void callback(char *, char*)){
        
        value[string_length] = '\0';
        key[key_length] = '\0';
-
+      
        callback(key, value);
 
+       if(strcmp(key,"id")==0){                                                                          break;                                                                                        } 
        i++;
        }
 
@@ -94,8 +96,9 @@ int parseJSON(char *filepath, void callback(char *, char*)){
 
 // Only prints the key and value
 void mycallback(char *key, char* value){
-  if(strcmp(key, "id")==0)
+  if(strcmp(key, "id")==0){
     printf("%s : %s\n", key, value);
+  }
 }
 
 int main()
