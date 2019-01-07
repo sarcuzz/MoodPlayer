@@ -5,8 +5,20 @@
 
 /*input the api json code*/
 
-static const char *JSON_STRING  = fopen("jsonSearch.txt", "r");
+static const char *JSON_STRING  ;
 
+void readfile(char* filepath, char* fileContent)
+{
+    FILE *f;
+    char c;
+    int index;
+    f = fopen("jsonSearch.json", "rt");
+    while((c = fgetc(f)) != EOF){
+        fileContent[index] = c;
+        index++;
+    }
+    fileContent[index] = '\0';
+}
 
 /*code to parse the json*/
 static int json(const char *json, jsmntok_t *tok, const char *s) {
@@ -22,11 +34,11 @@ int main() {
 	int j;
 	jsmn_parser p;
 	
-	jsmntok_t t[i];
+	jsmntok_t t[index];
 
 	/*testing to make sure it does not fail*/
 	
-	j = jsmn_parse(&p, JSON_STRING, strlen(JSON_STRING), t, sizeof(t)/sizeof(t[0]));
+	j = jsmn_parse(&p, JSON_STRING, strlen(JSON_STRING), t, sizeof(t)/sizeof(t[index]));
 	if (j < 0) {
 		printf("Failed to parse JSON: %d\n", j);
 		return 1;
