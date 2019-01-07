@@ -3,18 +3,22 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define	MAX_LINE 8192  /* max text line length */
+#define MAXBUF   8192  /* max I/O buffer size */
+#define LISTENQ  1024  /* second argument to listen() */
+#define NUM_ELEM (1000)
 int main()
 {
-
+  int size = 1000;
   int *actorid;
   int genreid;
-  char *actorname;
+  //  char *actorname;
   char *genre;
   char *buf, *p;
   char arg1[MAXLINE], arg2[MAXLINE], content[MAXLINE];
   char *host, request[100000], save[1000000],end[1000000], *port;
   int clientfd;
-  
+  char *actorname = (char *)malloc(sizeof(char)*size);
   
   // Extract the two arguments 
     if ((buf = getenv("QUERY_STRING")) != NULL) {
@@ -76,6 +80,7 @@ for (char *c = actorname; *c != '\0'; c++) {
     new_string_length++;
 }
 char *actornew = malloc((new_string_length + 1) * sizeof actornew[0]);
+//char *actorname = malloc((new_string_length + 1) * sizeof actorname[0]);
 char *c1, *c2;
 for (c1 = actorname, c2 = actornew; *c1 != '\0'; c1++) {
     if (*c1 == '+') {
@@ -92,6 +97,10 @@ for (c1 = actorname, c2 = actornew; *c1 != '\0'; c1++) {
 
  sprintf(request, "GET /3/search/person?api_key=5896d89b88e4261a1d2413a2846e7728&language=en-US&query=%s&page=1&include_adult=false",actornew);
 
+ void *Malloc(size_t size);
+ void *Realloc(void *ptr, size_t size);
+ void *Calloc(size_t nmemb, size_t size);
+ void Free(void *ptr);
  rio_t rio;
  host = "https:https://api.themoviedb.org";
  port = "80";
