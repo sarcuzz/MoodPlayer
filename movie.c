@@ -110,9 +110,6 @@ for (c1 = actorname, c2 = actornew; *c1 != '\0'; c1++) {
  sprintf(content,"%s%s\n",content,save);
   
 	  
-
- 
-
   /* use search API request to get json that has actor id                                                                                                      
 https://api.themoviedb.org/3/search/person?api_key=5896d89b88e4261a1d2413a2846e7728&language=en\
 -US&query=firstName%20lastName&page=1&include_adult=false                                       
