@@ -96,14 +96,17 @@ for (c1 = actorname, c2 = actornew; *c1 != '\0'; c1++) {
  host = "https:https://api.themoviedb.org";
  port = "80";
 
- clientfd = Open_clientfd(host,port);
- // Rio_readinitb(&rio,clientfd);
-void Rio_readinitb(rio_t *rp, int fd);
+ clientfd =  Open_clientfd(host,port);
+ //Rio_readinitb(&rio,clientfd);
+ // ssize_t Rio_readlineb(rio_t *rp, void *usrbuf, size_t maxlen);
+ void Rio_readinitb(rio_t *rp, int fd);
  if (clientfd == -1){
    printf("Failed connection");
  }
 
- Rio_readlineb(&rio, save, MAXLINE);
+ //ssize_t Rio_readlineb(&rio, save, MAXLINE);
+ ssize_t Rio_readlineb(rio_t *rp, void *usrbuf, size_t maxlen);
+ //void Rio_readinitb(rio_t *rp, int fd);
  sprintf(content,"%s%s\n",content,save);
   
 	  
