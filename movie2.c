@@ -16,7 +16,7 @@ int main()
   char *genre;
   char *buf, *p;
   char arg1[MAXLINE], arg2[MAXLINE], content[MAXLINE];
-  char *host, request[100000], save[1000000],end[1000000], *port;
+  //  char *host, request[100000], save[1000000],end[1000000], *port;
   int clientfd;
   char *actorname = ((char *)malloc(sizeof(char)*size));
   
@@ -109,32 +109,9 @@ int main()
     }
     *c2 = '\0';
 
-   
-    void *Malloc(size_t size);
-    void *Realloc(void *ptr, size_t size);
-    void *Calloc(size_t nmemb, size_t size);
-    void Free(void *ptr);
-    rio_t rio;
 
-    host = "https:https://api.themoviedb.org";
-    port = "80";
-    sprintf(request, "GET /3/search/person?api_key=5896d89b88e4261a1d2413a2846e7728&language=en-US&query=%s&page=1&include_adult=false",actornew);
-    int Open_clientfd(char *host, char *port); //open a connection
-
-    //clientfd = Open_clientfd(host,port);
-    //Rio_readinitb(&rio,clientfd);
-    // ssize_t Rio_readlineb(rio_t *rp, void *usrbuf, size_t maxlen);
-
-    void Rio_readinitb(rio_t *rp, int fd); 
-    if (clientfd == -1){
-      printf("Failed connection");
-    }
-
-    //ssize_t Rio_readlineb(&rio, save, MAXLINE);
-    ssize_t Rio_readlineb(rio_t *rp, void *usrbuf, size_t maxlen);//read the response
-    //void Rio_readinitb(rio_t *rp, int fd);
-    sprintf(content,"%s%s\n",content,save);
-  
+    //    host = "https:https://api.themoviedb.org";
+    //    port = "80";
     /* use search API request to get json that has actor id                                                                                                  
        https://api.themoviedb.org/3/search/person?api_key=5896d89b88e4261a1d2413a2846e7728&language=en\
        -US&query=firstName%20lastName&page=1&include_adult=false                                       
