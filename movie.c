@@ -7,9 +7,10 @@
 #define MAXBUF   8192  /* max I/O buffer size */
 #define LISTENQ  1024  /* second argument to listen() */
 #define NUM_ELEM (1000)
+
 int main()
 {
-  int size = 1000;
+  int size = (1000);
   int *actorid;
   int genreid;
   //  char *actorname;
@@ -18,7 +19,7 @@ int main()
   char arg1[MAXLINE], arg2[MAXLINE], content[MAXLINE];
   char *host, request[100000], save[1000000],end[1000000], *port;
   int clientfd;
-  char *actorname = (char *)malloc(sizeof(char)*size);
+  char *actorname = ((char *)malloc(sizeof(char)*size));
   
   // Extract the two arguments 
     if ((buf = getenv("QUERY_STRING")) != NULL) {
@@ -95,7 +96,7 @@ for (c1 = actorname, c2 = actornew; *c1 != '\0'; c1++) {
 }
 *c2 = '\0';
 
- sprintf(request, "GET /3/search/person?api_key=5896d89b88e4261a1d2413a2846e7728&language=en-US&query=%s&page=1&include_adult=false",actornew);
+// sprintf(request, "GET /3/search/person?api_key=5896d89b88e4261a1d2413a2846e7728&language=en-US&query=%s&page=1&include_adult=false",actornew);
 
  void *Malloc(size_t size);
  void *Realloc(void *ptr, size_t size);
@@ -104,18 +105,18 @@ for (c1 = actorname, c2 = actornew; *c1 != '\0'; c1++) {
  rio_t rio;
  host = "https:https://api.themoviedb.org";
  port = "80";
- 
- int Open_clientfd(char *host, char *port);
+ sprintf(request, "GET /3/search/person?api_key=5896d89b88e4261a1d2413a2846e7728&language=en-US&query=%s&page=1&include_adult=false",actornew);
+ int Open_clientfd(char *host, char *port); //open a connection
 //clientfd = Open_clientfd(host,port);
 //Rio_readinitb(&rio,clientfd);
  // ssize_t Rio_readlineb(rio_t *rp, void *usrbuf, size_t maxlen);
- void Rio_readinitb(rio_t *rp, int fd);
+ void Rio_readinitb(rio_t *rp, int fd); 
  if (clientfd == -1){
    printf("Failed connection");
  }
 
  //ssize_t Rio_readlineb(&rio, save, MAXLINE);
- ssize_t Rio_readlineb(rio_t *rp, void *usrbuf, size_t maxlen);
+ ssize_t Rio_readlineb(rio_t *rp, void *usrbuf, size_t maxlen);//read the response
  //void Rio_readinitb(rio_t *rp, int fd);
  sprintf(content,"%s%s\n",content,save);
   
@@ -133,13 +134,10 @@ https://api.themoviedb.org/3/search/person?api_key=5896d89b88e4261a1d2413a2846e7
   */
   sprintf(content, "Welcome to our Movie Application! Please choose a genre and tell us who you'd like to see in a film!");
 
-  /* gets the user input */
-  /*scanf("%s", actorName);
-    scanf("%s", genre);*/
   sprintf(content, "%s The actor that you are in the mood for is: %s ",content, actornew);
   sprintf(content, "%s The genre you are in the mood for is: %d", content,genreid);
 
-  sprintf(content, "%s /n  Actorname: %s, Genre: %s, Genreid: %d", content, actornew, genre, genreid);
+  sprintf(content, "%s /n  Actorname: %s, Genre: %s, Genreid: %d", content, actornew, genre,genreid);
   
   printf("Connection: close\r\n");
   printf("Content-length: %d\r\n", (int)strlen(content));
@@ -159,5 +157,4 @@ https://api.themoviedb.org/3/discover/movie?api_key=5896d89b88e4261a1d2413a2846e
   */
 
   exit(0);
-
 }
