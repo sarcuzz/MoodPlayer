@@ -28,8 +28,8 @@ int parseJSON(char *filepath, void callback(char *, char*)){
   char JSON_STRING[BUFFER_SIZE];
 
   
-    char value[1024];
-    char key[1024];
+    char value[5000];
+    char key[5000];
     
     
     readfile(filepath, JSON_STRING);
