@@ -116,15 +116,17 @@ int main()
     void Free(void *ptr);
     rio_t rio;
 
-    host = "https:https://api.themoviedb.org";
+    host = "api.themoviedb.org";
     port = "80";
-    sprintf(request, "GET /3/search/person?api_key=5896d89b88e4261a1d2413a2846e7728&language=en-US&query=%s&page=1&include_adult=false",actornew);
+    sprintf(request, "GET /3/search/person?api_key=5896d89b88e4261a1d2413a2846e7728&language=en-US&query=%s&page=1&include_adult=false\n",actornew);
     int Open_clientfd(char *host, char *port); //open a connection
 
-    //clientfd = Open_clientfd(host,port);
-    //Rio_readinitb(&rio,clientfd);
-    // ssize_t Rio_readlineb(rio_t *rp, void *usrbuf, size_t maxlen);
+    clientfd = Open_clientfd(host,port);
+    Rio_readinitb(&rio,clientfd);
+    ssize_t Rio_readlineb(rio_t *rp, void *usrbuf, size_t maxlen);
 
+    
+    
     void Rio_readinitb(rio_t *rp, int fd); 
     if (clientfd == -1){
       printf("Failed connection");
