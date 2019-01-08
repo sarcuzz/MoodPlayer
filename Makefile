@@ -1,6 +1,6 @@
 CC = gcc
 
-CSAPP_INC = ../../../../include
+CSAPP_INC =../../../../include
 CSAPP_SRC = ../../../../src
 
 CFLAGS = -Wall -O2 -I $(CSAPP_INC) -I .
